@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>实验模拟过程展示</title>
     <style>
         * {
@@ -14,13 +13,13 @@
             font-family: "Microsoft YaHei", Arial, sans-serif;
             text-align: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 10px;
+            padding: 10px;  /* 减少body内边距 */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
         .container {
-            max-width: 99%;
+            max-width: 99%;  /* 几乎占满整个屏幕宽度 */
             margin: 0 auto;
             background: white;
             padding: 30px;
@@ -40,13 +39,13 @@
         .gif-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 80px;
+            gap: 80px;  /* 大幅增加图片间距 */
             margin: 20px 0;
             flex: 1;
         }
         .gif-item {
             text-align: center;
-            padding: 30px;
+            padding: 30px;  /* 进一步增加内边距 */
             background: #f8f9fa;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -73,27 +72,24 @@
             cursor: pointer;
             border: 3px solid #e9ecef;
             border-radius: 12px;
-            padding: 20px;
+            padding: 20px;  /* 大幅增加图片容器内边距 */
             background: white;
             transition: border-color 0.3s ease;
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
         }
         .gif-img-container:hover {
             border-color: #667eea;
         }
         .gif-img {
             width: 100%;
-            max-width: 500px;
-            height: 280px;
+            max-width: 500px;  /* 大幅增加图片最大宽度 */
+            height: 280px;     /* 稍微增加高度 */
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-            transition: opacity 0.3s ease;
         }
         .gif-controls {
             margin-top: 15px;
@@ -102,7 +98,7 @@
             justify-content: center;
         }
         .gif-controls button {
-            padding: 12px 25px;
+            padding: 12px 25px;  /* 增加按钮内边距 */
             font-size: 16px;
             cursor: pointer;
             background: linear-gradient(45deg, #667eea, #764ba2);
@@ -118,9 +114,6 @@
         .gif-controls button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-        }
-        .gif-controls button:active {
-            transform: translateY(0);
         }
 
         .exit-link {
@@ -192,7 +185,6 @@
             border-radius: 15px;
             box-shadow: 0 0 80px rgba(255,255,255,0.2);
             border: 3px solid rgba(255,255,255,0.1);
-            transition: opacity 0.3s ease;
         }
         .modal-title {
             color: white;
@@ -252,17 +244,6 @@
             color: #ff4757;
         }
 
-        /* 加载指示器 */
-        .loading-indicator {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #667eea;
-            font-size: 16px;
-            display: none;
-        }
-
         /* 动画效果 */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -278,22 +259,18 @@
                 opacity: 1;
             }
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
 
         /* 响应式设计 */
         @media (max-width: 1400px) {
             .gif-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 50px;
+                gap: 50px;  /* 中等屏幕减少间距 */
             }
         }
         @media (max-width: 768px) {
             .gif-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 30px;  /* 小屏幕进一步减少间距 */
             }
             .container {
                 padding: 20px;
@@ -324,11 +301,10 @@
             <div class="gif-item">
                 <div class="gif-title">界面松弛动态过程</div>
                 <div class="gif-img-container" onclick="openFullscreen(1)">
-                    <div class="loading-indicator" id="loading1">加载中...</div>
-                    <img src="https://github.com/kakaluoto/Gif_html/raw/master/界面.gif" alt="界面松弛动态过程" class="gif-img" data-id="1" onload="hideLoading(1)" onerror="showError(1)">
+                    <img src="https://github.com/kakaluobo/Gif_html/raw/master/界面.gif" alt="界面松弛动态过程" class="gif-img" data-id="1">
                 </div>
                 <div class="gif-controls">
-                    <button onclick="enhancedRestart(1)" title="重新播放">🔄 重新播放</button>
+                    <button onclick="restartGif(1)" title="重新播放">🔄 重新播放</button>
                 </div>
             </div>
             
@@ -336,11 +312,10 @@
             <div class="gif-item">
                 <div class="gif-title">旋节分解演化过程</div>
                 <div class="gif-img-container" onclick="openFullscreen(2)">
-                    <div class="loading-indicator" id="loading2">加载中...</div>
-                    <img src="https://github.com/kakaluoto/Gif_html/raw/master/粗化图_final.gif" alt="旋节分解演化过程" class="gif-img" data-id="2" onload="hideLoading(2)" onerror="showError(2)">
+                    <img src="https://github.com/kakaluobo/Gif_html/raw/master/粗化图_final.gif" alt="旋节分解演化过程" class="gif-img" data-id="2">
                 </div>
                 <div class="gif-controls">
-                    <button onclick="enhancedRestart(2)" title="重新播放">🔄 重新播放</button>
+                    <button onclick="restartGif(2)" title="重新播放">🔄 重新播放</button>
                 </div>
             </div>
             
@@ -348,11 +323,10 @@
             <div class="gif-item">
                 <div class="gif-title">液滴凝聚过程</div>
                 <div class="gif-img-container" onclick="openFullscreen(3)">
-                    <div class="loading-indicator" id="loading3">加载中...</div>
-                    <img src="https://github.com/kakaluoto/Gif_html/raw/master/立体气泡_final.gif" alt="液滴凝聚过程" class="gif-img" data-id="3" onload="hideLoading(3)" onerror="showError(3)">
+                    <img src="https://github.com/kakaluobo/Gif_html/raw/master/立体气泡_final.gif" alt="液滴凝聚过程" class="gif-img" data-id="3">
                 </div>
                 <div class="gif-controls">
-                    <button onclick="enhancedRestart(3)" title="重新播放">🔄 重新播放</button>
+                    <button onclick="restartGif(3)" title="重新播放">🔄 重新播放</button>
                 </div>
             </div>
         </div>
@@ -365,8 +339,7 @@
         <button class="modal-close" onclick="closeFullscreen()">&times;</button>
         <div class="fullscreen-content">
             <div class="modal-title" id="modalTitle">界面松弛动态过程</div>
-            <div class="loading-indicator" id="fullscreenLoading">加载中...</div>
-            <img class="fullscreen-gif" id="fullscreenGif" onload="hideFullscreenLoading()" onerror="showFullscreenError()">
+            <img class="fullscreen-gif" id="fullscreenGif">
             <div class="modal-controls">
                 <button onclick="restartCurrentGif()" title="重新播放">🔄</button>
                 <button onclick="closeFullscreen()" title="退出">❌</button>
@@ -379,26 +352,21 @@
         const gifStates = {
             1: { 
                 element: null,
-                originalSrc: null,
-                isLoading: false
+                originalSrc: null
             },
             2: { 
                 element: null,
-                originalSrc: null,
-                isLoading: false
+                originalSrc: null
             },
             3: { 
                 element: null,
-                originalSrc: null,
-                isLoading: false
+                originalSrc: null
             }
         };
 
-        // 关闭页面函数
+        // 关闭页面函数 - 直接关闭，无确认对话框
         function closePage() {
-            if (confirm('确定要关闭页面吗？')) {
-                window.close();
-            }
+            window.close();
         }
 
         // 初始化
@@ -406,92 +374,21 @@
             // 获取所有GIF元素
             for (let i = 1; i <= 3; i++) {
                 const gifElement = document.querySelector(`.gif-img[data-id="${i}"]`);
-                if (gifElement) {
-                    gifStates[i].element = gifElement;
-                    gifStates[i].originalSrc = gifElement.src.split('?')[0];
-                    
-                    // 显示加载指示器
-                    showLoading(i);
-                }
+                gifStates[i].element = gifElement;
+                gifStates[i].originalSrc = gifElement.src;
             }
         });
 
-        // 加载状态管理
-        function showLoading(gifId) {
-            const loadingElement = document.getElementById(`loading${gifId}`);
-            if (loadingElement) {
-                loadingElement.style.display = 'block';
-            }
-            gifStates[gifId].isLoading = true;
-        }
-
-        function hideLoading(gifId) {
-            const loadingElement = document.getElementById(`loading${gifId}`);
-            if (loadingElement) {
-                loadingElement.style.display = 'none';
-            }
-            gifStates[gifId].isLoading = false;
-        }
-
-        function showError(gifId) {
-            const loadingElement = document.getElementById(`loading${gifId}`);
-            if (loadingElement) {
-                loadingElement.textContent = '加载失败';
-                loadingElement.style.color = '#ff4757';
-            }
-            gifStates[gifId].isLoading = false;
-        }
-
-        function showFullscreenLoading() {
-            const loadingElement = document.getElementById('fullscreenLoading');
-            if (loadingElement) {
-                loadingElement.style.display = 'block';
-            }
-        }
-
-        function hideFullscreenLoading() {
-            const loadingElement = document.getElementById('fullscreenLoading');
-            if (loadingElement) {
-                loadingElement.style.display = 'none';
-            }
-        }
-
-        function showFullscreenError() {
-            const loadingElement = document.getElementById('fullscreenLoading');
-            if (loadingElement) {
-                loadingElement.textContent = '加载失败';
-                loadingElement.style.color = '#ff4757';
-            }
-        }
-
-        // 重新播放单个GIF - 使用克隆替换方法
+        // 重新播放单个GIF
         function restartGif(gifId) {
             const state = gifStates[gifId];
-            if (!state || !state.element) return;
-            
             const gifElement = state.element;
-            const parent = gifElement.parentNode;
             
-            // 显示加载指示器
-            showLoading(gifId);
-            
-            // 创建新的img元素
-            const newImg = document.createElement('img');
-            newImg.src = state.originalSrc + '?restart=' + Date.now();
-            newImg.alt = gifElement.alt;
-            newImg.className = gifElement.className;
-            newImg.setAttribute('data-id', gifId);
-            newImg.onload = () => hideLoading(gifId);
-            newImg.onerror = () => showError(gifId);
-            
-            // 替换旧图片
-            parent.replaceChild(newImg, gifElement);
-            
-            // 更新状态
-            state.element = newImg;
-            gifStates[gifId] = state;
-            
-            console.log('重新播放GIF:', gifId);
+            // 重新加载GIF
+            gifElement.src = '';
+            setTimeout(() => {
+                gifElement.src = state.originalSrc;
+            }, 100);
         }
 
         // 打开全屏模态框
@@ -501,16 +398,10 @@
             const modalTitle = document.getElementById('modalTitle');
             const state = gifStates[gifId];
             
-            if (!state || !state.element) return;
-            
             currentGifId = gifId;
             
-            // 显示加载指示器
-            showFullscreenLoading();
-            
-            // 显示动图 - 直接使用当前显示的图片源
-            fullscreenGif.style.opacity = '0';
-            fullscreenGif.src = state.element.src + '?fullscreen=' + Date.now();
+            // 显示动图
+            fullscreenGif.src = state.originalSrc;
             
             // 设置标题
             const titles = {
@@ -522,66 +413,34 @@
             
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            
-            // 淡入效果
-            setTimeout(() => {
-                fullscreenGif.style.opacity = '1';
-            }, 300);
         }
 
         // 关闭全屏模态框
         function closeFullscreen() {
             const modal = document.getElementById('fullscreenModal');
-            const fullscreenGif = document.getElementById('fullscreenGif');
-            
-            fullscreenGif.style.opacity = '0';
-            
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                currentGifId = null;
-                fullscreenGif.src = '';
-            }, 300);
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentGifId = null;
         }
 
         // 重新播放当前全屏动图
         function restartCurrentGif() {
-            if (!currentGifId) return;
-            
-            const state = gifStates[currentGifId];
-            const fullscreenGif = document.getElementById('fullscreenGif');
-            
-            if (!fullscreenGif || !state) return;
-            
-            // 显示加载指示器
-            showFullscreenLoading();
-            
-            // 淡出效果
-            fullscreenGif.style.opacity = '0';
-            
-            setTimeout(() => {
-                // 重新设置src - 强制重新加载
-                const baseSrc = state.originalSrc;
-                fullscreenGif.src = baseSrc + '?force=' + Date.now();
+            if (currentGifId) {
+                const state = gifStates[currentGifId];
+                const fullscreenGif = document.getElementById('fullscreenGif');
                 
-                // 淡入效果
+                // 重新加载全屏GIF
+                fullscreenGif.src = '';
                 setTimeout(() => {
-                    fullscreenGif.style.opacity = '1';
-                }, 300);
-                
-            }, 300);
-            
-            console.log('全屏模式重新播放:', currentGifId);
-        }
-
-        // 增强版重新播放 - 同时刷新小图
-        function enhancedRestart(gifId) {
-            // 刷新小图
-            restartGif(gifId);
-            
-            // 如果当前正在全屏显示这个GIF，也刷新全屏图
-            if (currentGifId === gifId) {
-                restartCurrentGif();
+                    fullscreenGif.src = state.originalSrc;
+                    
+                    // 同时更新小图的GIF状态
+                    const smallGif = state.element;
+                    smallGif.src = '';
+                    setTimeout(() => {
+                        smallGif.src = state.originalSrc;
+                    }, 50);
+                }, 100);
             }
         }
 
@@ -599,12 +458,9 @@
                         event.preventDefault();
                         restartCurrentGif();
                         break;
-                    case ' ':
-                        event.preventDefault();
-                        restartCurrentGif();
-                        break;
                 }
             } else {
+                // 在正常模式下也可以按ESC关闭页面
                 if (event.key === 'Escape') {
                     closePage();
                 }
@@ -622,12 +478,7 @@
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('dragstart', (e) => e.preventDefault());
         });
-
-        // 页面卸载前确认
-        window.addEventListener('beforeunload', function(e) {
-            e.preventDefault();
-            e.returnValue = '';
-        });
     </script>
 </body>
 </html>
+
