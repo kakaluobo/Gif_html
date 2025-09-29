@@ -364,9 +364,23 @@
             }
         };
 
-        // 关闭页面函数 - 直接关闭，无确认对话框
+        // 关闭页面函数 - 提供替代方案
         function closePage() {
-            window.close();
+            // 尝试直接关闭窗口
+            if (window.close && !window.opener) {
+                window.close();
+            } else {
+                // 如果无法直接关闭，提供替代方案
+                if (confirm("确定要结束展示吗？")) {
+                    // 尝试返回上一页
+                    if (history.length > 1) {
+                        history.back();
+                    } else {
+                        // 如果无法返回，则重定向到空白页或关闭标签页
+                        window.location.href = "about:blank";
+                    }
+                }
+            }
         }
 
         // 初始化
@@ -387,7 +401,7 @@
             // 重新加载GIF
             gifElement.src = '';
             setTimeout(() => {
-                gifElement.src = state.originalSrc;
+                gifElement.src = state.originalSrc + '?t=' + Date.now(); // 添加时间戳确保重新加载
             }, 100);
         }
 
@@ -432,13 +446,13 @@
                 // 重新加载全屏GIF
                 fullscreenGif.src = '';
                 setTimeout(() => {
-                    fullscreenGif.src = state.originalSrc;
+                    fullscreenGif.src = state.originalSrc + '?t=' + Date.now(); // 添加时间戳确保重新加载
                     
                     // 同时更新小图的GIF状态
                     const smallGif = state.element;
                     smallGif.src = '';
                     setTimeout(() => {
-                        smallGif.src = state.originalSrc;
+                        smallGif.src = state.originalSrc + '?t=' + Date.now();
                     }, 50);
                 }, 100);
             }
@@ -481,4 +495,3 @@
     </script>
 </body>
 </html>
-
